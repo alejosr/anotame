@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Notasapp</title>
+    <link rel='stylesheet' href='assets/css/dark.css' />
+
+    <link rel="import" href="assets/html/about.html" />
+    <link rel="import" href="assets/html/editor.html" />
+  </head>
+  <body>
+    <div class="content">
+        <div id="leftbar">
+            <ul>
+                <li>Nota Suelta</li>
+                <li>Directorio</li>
+            </ul>
+        </div>
+        <div id="rightbar"></div>
+    </div>
+    <script>
+        require('./assets/lib/imports');
+        window.$ = window.jQuery = require('./assets/lib/jquery');
+        require('./app/const');
+        // require('./app/NotasFront');
+
+        function nf_listhtml(list){
+            let html = "<ul>";
+            list.forEach(function(v,i){
+                if(v.type==0){
+                    html+=`<li>${v.name}</li>`;
+                }else{
+                    html+=`<li>${v.name}` + nf_listhtml(v.content) + `</li>`;
+                }
+            });
+            html+="</ul>";
+            return html;
+        }
+
+        function nf_refresh(list){
+            let html = nf_listhtml(list);
+            $("#leftbar").empty().append(html);
+        }
+
+        const {ipcRenderer} = require('electron')
+        ipcRenderer.send('dom-is-ready');
+
+        ipcRenderer.on('close-about', function(event, input, output) {
+            document.getElementById('about').style.display = "none";
+        });
+
+        ipcRenderer.on('close-window', function(event, input, output) {
+            ipcRenderer.send('dom-hide-window');
+        });
+
+        ipcRenderer.on('open-window', function(event, input, output) {
+            switch( input.action ){
+                case 'list':
+                        let list = input.parameters;
+                        nf_refresh(list);
+                    break;
+                case 'about':
+                        let version = input.parameters;
+                        document.getElementById('app_version').innerHTML = version;
+                        document.getElementById('about').style.display = "block";
+                    break;
+                default:
+                    break;
+            }
+
+            ipcRenderer.send('dom-show-window');
+        });
+
+        document.getElementById("btn_close_about").addEventListener("click", function (e) {
+            document.getElementById('about').style.display = "none";
+            //window.close();
+        });
+    </script>
+  </body>
+</html>
