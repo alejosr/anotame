@@ -13,7 +13,7 @@
     <div id="content" class="content">
         <div id="leftbar">
             <div id="list-title">
-                <span>x</span>
+                <span id="btn_close_leftbar">x</span>
             </div>
             <div id="list-content">
 
@@ -73,13 +73,16 @@
         ipcRenderer.on('open-window', function(event, input, output) {
             switch( input.action ){
                 case 'list':
+                        $("#content").show();
+                        $("#about").hide();
                         let list = input.parameters;
                         nf_refresh(list);
                     break;
                 case 'about':
+                        $("#content").hide();
                         let version = input.parameters;
-                        document.getElementById('app_version').innerHTML = version;
-                        document.getElementById('about').style.display = "block";
+                        $('#app_version').html(version);
+                        $('#about').show();
                     break;
                 default:
                     break;
@@ -89,8 +92,13 @@
         });
 
         document.getElementById("btn_close_about").addEventListener("click", function (e) {
-            document.getElementById('about').style.display = "none";
-            //window.close();
+            $("#content").show();
+            $("#about").hide();
+        });
+
+        document.getElementById("btn_close_leftbar").addEventListener("click", function (e) {
+            $("#leftbar").css("width","0px");
+            $("#main").css("margin-left", "0px");
         });
     </script>
   </body>
