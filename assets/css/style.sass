@@ -1,0 +1,52 @@
+body
+    margin: 0
+    background-color: #232323
+    color: #fafafa
+    font-family: 'Open Sans', sans-serif
+    min-height: 100vh
+
+#content
+    min-height: 100vh
+    min-width: 100vw
+    #leftbar
+        position: fixed!important
+        height: 100%
+        width: 180px
+        z-index: 1
+        overflow: auto
+        color: #fafafa
+        background-color: #232323!important
+        box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19)
+        #list-title
+            background-color: #616161!important
+            text-align: right
+            span
+                cursor: pointer
+                padding: 5px
+                &:hover
+                    color: red
+
+        ul
+            margin: 0px
+            font-size: 14px
+            list-style-type: none
+            padding: 0px
+            li
+                cursor: pointer
+                &.file
+                    &:hover
+                        background-color: rgb(76, 175, 80)
+            ul
+                li
+                    padding: 0px 0px 0px 10px
+
+    #main
+        margin-left: 180px
+        transition: margin-left .4s
+        height: 100vh
+        background-color: #fafafa
+        .editor
+            padding: 0.01em 16px
+            position: relative
+            font-family: 'Courier New', Courier, monospace
+            color: #000000
