@@ -57,6 +57,10 @@ let template_menu = [{
         ]
     },
     { 
+        label: 'Recargar', 
+        role: 'reload'
+    },
+    { 
         label: 'Salir', 
         click: () => {
             app.emit('menu-close-app')
