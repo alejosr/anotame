@@ -2,3 +2,13 @@ body{
     background-color: #232323;
     color: white;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul ul{
+    padding: 0px 0px 0px 10px;
+}
