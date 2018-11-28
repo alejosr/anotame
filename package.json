@@ -17,7 +17,7 @@
     "author": "arojas",
     "license": "MIT",
     "devDependencies": {
-        "electron": "3.0.10",
+        "electron": "^2.0.0",
         "electron-packager": "^12.2.0",
         "fs": "0.0.1-security"
     },
