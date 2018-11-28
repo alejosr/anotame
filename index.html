@@ -3,20 +3,24 @@
   <head>
     <meta charset="UTF-8">
     <title>Notasapp</title>
-    <link rel='stylesheet' href='assets/css/dark.css' />
+    <link rel='stylesheet' href='assets/font/OpenSans.css' />
+    <link rel='stylesheet' href='assets/css/style.min.css' />
 
     <link rel="import" href="assets/html/about.html" />
     <link rel="import" href="assets/html/editor.html" />
   </head>
   <body>
-    <div class="content">
+    <div id="content" class="content">
         <div id="leftbar">
-            <ul>
-                <li>Nota Suelta</li>
-                <li>Directorio</li>
-            </ul>
+            <div id="list-title">
+                <span>x</span>
+            </div>
+            <div id="list-content">
+
+            </div>
         </div>
-        <div id="rightbar"></div>
+        <div id="main">
+        </div>
     </div>
     <script>
         require('./assets/lib/imports');
@@ -24,13 +28,14 @@
         require('./app/const');
         // require('./app/NotasFront');
 
-        function nf_listhtml(list){
-            let html = "<ul>";
+        function nf_listhtml(list, rama){
+            let html = (rama>0) ? "<ul style='display:none'>" : "<ul>";
+
             list.forEach(function(v,i){
                 if(v.type==0){
-                    html+=`<li>${v.name}</li>`;
+                    html+=`<li class='file' onclick='mostrar_archivo("${v.path}")'>${v.name}</li>`;
                 }else{
-                    html+=`<li>${v.name}` + nf_listhtml(v.content) + `</li>`;
+                    html+=`<li class='book' onclick='mostrar_hijos(this)'><b>${v.name}</b>` + nf_listhtml(v.content, rama+1) + `</li>`;
                 }
             });
             html+="</ul>";
@@ -38,8 +43,20 @@
         }
 
         function nf_refresh(list){
-            let html = nf_listhtml(list);
-            $("#leftbar").empty().append(html);
+            console.log(list)
+            let html = nf_listhtml(list,0);
+            $("#list-content").empty().append(html);
+        }
+
+        function mostrar_hijos(self){
+            $(self).find("ul").first().toggle();
+        }
+
+        function mostrar_archivo(path){
+            $("#editor").hide();
+            $("#ed_content").html("Hola Mundo")
+            $("#ed_info").html(path);
+            $("#editor").show();
         }
 
         const {ipcRenderer} = require('electron')
