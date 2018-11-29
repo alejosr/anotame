@@ -11,7 +11,25 @@ body
     #leftbar
         position: fixed!important
         height: 100%
-        width: 180px
+        width: 50px
+        z-index: 1
+        overflow: auto
+        color: #fafafa
+        background-color: #323232!important
+        button
+            background-color: transparent
+            display: block
+            border: none
+            cursor: pointer
+            &:hover
+                background-color: rgba(255,255,255,.4)
+            &:focus
+                outline: none
+    #list
+        position: fixed!important
+        margin-left: 50px
+        height: 100%
+        width: 300px
         z-index: 1
         overflow: auto
         color: #fafafa
@@ -19,18 +37,18 @@ body
         box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19)
         #list-title
             background-color: #616161!important
-            text-align: right
             span
+                float: right
                 cursor: pointer
-                padding: 5px
+                padding: 2px
                 &:hover
                     color: red
 
         ul
             margin: 0px
-            font-size: 14px
+            font-size: 12px
             list-style-type: none
-            padding: 0px
+            padding: 0px 2px 0px 5px
             li
                 cursor: pointer
                 &.file
@@ -41,8 +59,8 @@ body
                     padding: 0px 0px 0px 10px
 
     #main
-        margin-left: 180px
-        transition: margin-left .4s
+        margin-left: 350px
+        transition: margin-left .2s
         height: 100vh
         background-color: #fafafa
         .editor
@@ -50,3 +68,15 @@ body
             position: relative
             font-family: 'Courier New', Courier, monospace
             color: #000000
+            font-size: 14px
+            #ed_title
+                width: 100%
+                font-size: 2em
+                font-weight: bold
+                border: none
+                background-color: #fafafa
+                padding: 2px 0px 5px 0px
+                &::placeholder
+                    opacity: .35
+                &:focus
+                    outline: none
