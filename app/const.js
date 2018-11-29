@@ -1,4 +1,2 @@
-var ctts = {
-    TYPE_NOTE: 0,
-    TYPE_BOOK: 1
-}
+const TYPE_NOTE = 0;
+const TYPE_BOOK = 1;

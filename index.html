@@ -12,54 +12,26 @@
   <body>
     <div id="content" class="content">
         <div id="leftbar">
+            <button id="btn_list"><img src="assets/images/list.png" width="100%" /></button>
+            <button id="btn_new"><img src="assets/images/create.png" width="100%" /></button>
+        </div>
+        <div id="list">
             <div id="list-title">
-                <span id="btn_close_leftbar">x</span>
+                &nbsp;Notas
+                <span id="btn_close_list"><img src="assets/images/close.png" width="18px"/></span>
             </div>
-            <div id="list-content">
-
-            </div>
+            <div id="list-content"></div>
         </div>
         <div id="main">
         </div>
     </div>
     <script>
-        require('./assets/lib/imports');
         window.$ = window.jQuery = require('./assets/lib/jquery');
         require('./app/const');
-        // require('./app/NotasFront');
+        require('./assets/lib/imports');
 
-        function nf_listhtml(list, rama){
-            let html = (rama>0) ? "<ul style='display:none'>" : "<ul>";
-
-            list.forEach(function(v,i){
-                if(v.type==0){
-                    html+=`<li class='file' onclick='mostrar_archivo("${v.path}")'>${v.name}</li>`;
-                }else{
-                    html+=`<li class='book' onclick='mostrar_hijos(this)'><b>${v.name}</b>` + nf_listhtml(v.content, rama+1) + `</li>`;
-                }
-            });
-            html+="</ul>";
-            return html;
-        }
-
-        function nf_refresh(list){
-            console.log(list)
-            let html = nf_listhtml(list,0);
-            $("#list-content").empty().append(html);
-        }
-
-        function mostrar_hijos(self){
-            $(self).find("ul").first().toggle();
-        }
-
-        function mostrar_archivo(path){
-            $("#editor").hide();
-            $("#ed_content").html("Hola Mundo")
-            $("#ed_info").html(path);
-            $("#editor").show();
-        }
-
-        const {ipcRenderer} = require('electron')
+        // Comunicación con el proceso principal
+        const {ipcRenderer} = require('electron');
         ipcRenderer.send('dom-is-ready');
 
         ipcRenderer.on('close-about', function(event, input, output) {
@@ -90,16 +62,9 @@
 
             ipcRenderer.send('dom-show-window');
         });
-
-        document.getElementById("btn_close_about").addEventListener("click", function (e) {
-            $("#content").show();
-            $("#about").hide();
-        });
-
-        document.getElementById("btn_close_leftbar").addEventListener("click", function (e) {
-            $("#leftbar").css("width","0px");
-            $("#main").css("margin-left", "0px");
-        });
     </script>
+    <script src="assets/renderer/interactions.js"></script>
+    <script src="assets/renderer/list.js"></script>
+    <script src="assets/renderer/editor.js"></script>
   </body>
 </html>
