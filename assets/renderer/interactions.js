@@ -1,3 +1,10 @@
+document.addEventListener("keydown", function(k){
+    console.log(k)
+    if(k.keyCode == 27){
+        ipcRenderer.send('dom-hide-window');
+    }
+});
+
 document.getElementById("btn_close_about").addEventListener("click", function (e) {
     $("#content").show();
     $("#about").hide();
