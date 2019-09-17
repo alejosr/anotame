@@ -49,6 +49,15 @@ var FileManager = function(){
         },
     }
 }();
+
+function fromPython(){
+    var python = require('child_process').spawn('python', ['./app/python/hello.py']);
+    python.stdout.on('data',function(data){
+        data = JSON.parse(data.toString('utf8'));
+        console.log("data:",data.msg);
+    });
+}
+
 //////////////////////////////////////////////////////
 
 // const globalShortcut = require('global-shortcut');
@@ -161,6 +170,7 @@ function getWidgetMenu() {
     template.push({
         label: 'Acerca de NotasApp',
         click: () => {
+            fromPython();
             showAbout();
         }
     });
