@@ -22,6 +22,16 @@ let template_menu = [{
                     }
                 }
             },
+            {
+                label: 'Buscar',
+                accelerator: 'CmdOrCtrl+P',
+                //role: 'undo'
+                click: (item, focusedWindow) => {
+                    if (focusedWindow) {
+                        app.emit('menu-buscar')
+                    }
+                }
+            },
             { 
                 label: 'Cerrar Ventana',
                 role: 'close',

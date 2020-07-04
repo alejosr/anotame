@@ -128,9 +128,9 @@ function createWindow() {
     });
 }
 
-function openWindow(action, param) {
+function changeWindow(action, param) {
     if(gi.mainWindowReady){
-        gi.mainWindow.webContents.send('open-window', {'action':action, 'parameters':param});
+        gi.mainWindow.webContents.send('change-window', {'action':action, 'parameters':param});
     }else{
         dialog.showMessageBox(gi.mainWindow, {
             type: 'error',
@@ -141,7 +141,7 @@ function openWindow(action, param) {
 }
 
 function showAbout() {
-    openWindow("about",app.getVersion());
+    changeWindow("about",app.getVersion());
 }
 
 function notification(title, msg) {
@@ -198,7 +198,7 @@ app.on('ready', () => {
     createWindow();
 
     gi.tray.on('click', () => {
-        openWindow();
+        changeWindow();
     });
 
     /*
@@ -224,8 +224,12 @@ app.on("menu-open-devtool", () => {
 
 app.on("menu-list", () => {
     let list = FileManager.readRepository();
+    changeWindow("list", list)
+});
 
-    openWindow("list", list)
+app.on("menu-buscar", () => {
+    let list = FileManager.readRepository();
+    changeWindow("search", list)
 });
 
 app.on("menu-about", () => {

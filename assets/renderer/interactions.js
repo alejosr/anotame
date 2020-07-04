@@ -1,7 +1,11 @@
 document.addEventListener("keydown", function(k){
     console.log(k)
     if(k.keyCode == 27){
-        ipcRenderer.send('dom-hide-window');
+        if($("#search").is(":visible")){
+            $("#search").hide();
+        }else{
+            ipcRenderer.send('dom-hide-window');
+        }
     }
 });
 

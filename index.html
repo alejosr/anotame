@@ -8,6 +8,7 @@
 
     <link rel="import" href="assets/html/about.html" />
     <link rel="import" href="assets/html/editor.html" />
+    <link rel="import" href="assets/html/search.html" />
   </head>
   <body>
     <div id="content" class="content">
@@ -42,13 +43,19 @@
             ipcRenderer.send('dom-hide-window');
         });
 
-        ipcRenderer.on('open-window', function(event, input, output) {
+        ipcRenderer.on('change-window', function(event, input, output) {
+            console.log(input);
             switch( input.action ){
                 case 'list':
                         $("#content").show();
                         $("#about").hide();
                         let list = input.parameters;
                         nf_refresh(list);
+                    break;
+                case 'search':
+                        $("#content").show();
+                        $("#search").show();
+                        // $("#about").hide();
                     break;
                 case 'about':
                         $("#content").hide();
