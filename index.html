@@ -13,15 +13,15 @@
   <body>
     <div id="content" class="content">
         <div id="leftbar">
-            <button id="btn_list"><img src="assets/images/list.png" width="100%" /></button>
-            <button id="btn_new"><img src="assets/images/create.png" width="100%" /></button>
+            <button id="btn_list_toggle"><img src="assets/images/list.png" width="100%" /></button>
+            <button id="btn_edit_new"><img src="assets/images/create.png" width="100%" /></button>
         </div>
         <div id="list">
             <div id="list-title">
                 &nbsp;Notas
-                <span id="btn_close_list"><img src="assets/images/close.png" width="18px"/></span>
+                <span id="btn_list_close"><img src="assets/images/close.png" width="18px"/></span>
             </div>
-            <div id="list-content"></div>
+            <div id="list_content"></div>
         </div>
         <div id="main">
         </div>
@@ -50,12 +50,13 @@
                         $("#content").show();
                         $("#about").hide();
                         let list = input.parameters;
-                        nf_refresh(list);
+                        listRefresh(list);
                     break;
                 case 'search':
                         $("#content").show();
+                        $("#about").hide();
                         $("#search").show();
-                        // $("#about").hide();
+                        $("#search_input").val("").focus();
                     break;
                 case 'about':
                         $("#content").hide();

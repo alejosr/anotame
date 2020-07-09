@@ -4,22 +4,27 @@ document.addEventListener("keydown", function(k){
         if($("#search").is(":visible")){
             $("#search").hide();
         }else{
-            ipcRenderer.send('dom-hide-window');
+            if($("#about").is(":visible")){
+                $("#about").hide();
+                $("#content").show();
+            }else{
+                ipcRenderer.send('dom-hide-window');
+            }
         }
     }
 });
 
-document.getElementById("btn_close_about").addEventListener("click", function (e) {
+document.getElementById("btn_about_close").addEventListener("click", function (e) {
     $("#content").show();
     $("#about").hide();
 });
 
-document.getElementById("btn_close_list").addEventListener("click", function (e) {
+document.getElementById("btn_list_close").addEventListener("click", function (e) {
     $("#list").hide();
     $("#main").css("margin-left", "50px");
 });
 
-document.getElementById("btn_list").addEventListener("click", function (e) {
+document.getElementById("btn_list_toggle").addEventListener("click", function (e) {
     if( $("#list").is(":visible") ){
         $("#list").hide();
         $("#main").css("margin-left", "50px");
@@ -27,4 +32,10 @@ document.getElementById("btn_list").addEventListener("click", function (e) {
         $("#list").show();
         $("#main").css("margin-left", "350px");
     }
+});
+
+document.getElementById("btn_edit_new").addEventListener("click", function (e) {
+    $("#list").hide();
+    $("#main").css("margin-left", "50px");
+    editorClear();
 });

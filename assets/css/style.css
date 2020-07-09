@@ -96,7 +96,7 @@ body {
   font-size: 14px;
 }
 
-#content #main .editor #ed_title {
+#content #main .editor #editor_title {
   width: 100%;
   font-size: 2em;
   font-weight: bold;
@@ -105,21 +105,31 @@ body {
   padding: 2px 0px 5px 0px;
 }
 
-#content #main .editor #ed_title::placeholder {
+#content #main .editor #editor_title::placeholder {
   opacity: .35;
 }
 
-#content #main .editor #ed_title:focus {
+#content #main .editor #editor_title:focus {
   outline: none;
 }
 
 #content #search {
   position: absolute;
-  top: 10px;
-  margin: auto;
-  background-color: #232323 !important;
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
-  min-width: 320px;
-  padding: 8px 12px;
+  top: 0px;
   z-index: 10;
+  width: 100%;
+  text-align: center;
+}
+
+#content #search .search-wrapper {
+  margin: auto;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 8px 12px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#content #search .search-wrapper input {
+  text-align: left;
+  min-width: 360px;
 }

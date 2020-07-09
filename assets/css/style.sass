@@ -69,7 +69,7 @@ body
             font-family: 'Courier New', Courier, monospace
             color: #000000
             font-size: 14px
-            #ed_title
+            #editor_title
                 width: 100%
                 font-size: 2em
                 font-weight: bold
@@ -83,10 +83,16 @@ body
 
     #search
         position: absolute
-        top: 10px
-        margin: auto
-        background-color: #232323!important
-        box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19)
-        min-width: 320px
-        padding: 8px 12px
+        top: 0px
         z-index: 10
+        width: 100%
+        text-align: center
+        .search-wrapper
+            margin: auto
+            display: inline-block
+            background-color: rgba(0,0,0,0.4)
+            padding: 8px 12px
+            box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19)
+            input
+                text-align: left
+                min-width: 360px

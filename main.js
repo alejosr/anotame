@@ -126,6 +126,12 @@ function createWindow() {
     ipcMain.on('dom-hide-window', function(event) {
         gi.mainWindow.hide();
     });
+
+    // App interactions
+    ipcMain.on('app-read-file', function(event, data) {
+        console.log(data);
+        return "uhh loco";
+    });
 }
 
 function changeWindow(action, param) {
@@ -161,14 +167,14 @@ function getWidgetMenu() {
     template.push({
         label: `Notas: 10`,
         click: () => {
-            notification("NotasApp","Aplicación para Notas");
+            notification("Anotame","Aplicación para Notas");
         }
     });
     
     template.push({ type: 'separator' });
 
     template.push({
-        label: 'Acerca de NotasApp',
+        label: 'Acerca de Anotame',
         click: () => {
             fromPython();
             showAbout();
